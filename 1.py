@@ -22,7 +22,7 @@ def f():
             try:
                 an = (-1)**n * x**(2*n) / factorial(2*n)
             except OverflowError:
-                tkinter.messagebox.showerror('E', 'Числа слишком большие для отображения первой функции!')
+                tkinter.messagebox.showerror('ERROR', 'The numbers are too big to display the first function!')
                 return []
             Sum += an
             n += 1
@@ -55,16 +55,15 @@ def GetData():
         tmpdY = float(ent7.get())
         tmpdX = float(ent6.get())
     except ValueError:
-        tkinter.messagebox.showerror('Ошибка', 'Число введенно не корректно')
+        tkinter.messagebox.showerror('ERROR', 'The number is entered incorrectly!')
         return False
     if ((tmpXmin >= tmpXmax) or
             (tmpYmin >= tmpYmax) or
             (tmpdX <= 0)):
-        showwarning(title="Ошибка задания границ", message="Должны выполняться "
-                                                               " неравенства:\n"
+        showwarning(title="Boundary setting error", message="The inequalities must be met:\n"
                                                                "Xmax > Xmin;\n"
                                                                "Ymax > Ymin;\n"
-                                                               "Шаг меток > 2")
+                                                               "The step of the labels > 2")
     else:
         Xmax = tmpXmax
         Xmin = tmpXmin
@@ -153,7 +152,7 @@ def Final(event):
 
 
 def window_deleted():
-    if askyesno("Выход", "Завершить работу?"):
+    if askyesno("Exit", "Finish the job?"):
         root.destroy()
 
 
@@ -172,7 +171,7 @@ def showXY(event):
 
 
 root = Tk()
-root.title("Графика")
+root.title("Graphics")
 root.protocol('WM_DELETE_WINDOW', window_deleted)
 root.resizable(False, False)
 Kp = 0.7
@@ -219,20 +218,20 @@ lba5.grid(row=2, column=4, sticky='e')
 ent5 = Entry(root, width=5, font="Ubuntu, 12")
 ent5.grid(row=2, column=5)
 ent5.insert(0, Ymax)
-lba6 = Label(root, text="Шаг меток:", width=10, fg="blue", font="Ubutu, 12")
+lba6 = Label(root, text="Step:", width=10, fg="blue", font="Ubutu, 12")
 lba6.grid(row=1, column=6, sticky='e')
 ent6 = Entry(root, width=5, font="Ubuntu, 12")
 ent6.grid(row=1, column=7)
 ent6.insert(0, dX)
-lba7 = Label(root, text="Смещение:", width=10, fg="blue", font="Ubutu, 12")
+lba7 = Label(root, text="Offset:", width=10, fg="blue", font="Ubutu, 12")
 lba7.grid(row=2, column=6, sticky='e')
 ent7 = Entry(root, width=5, font="Ubuntu, 12")
 ent7.grid(row=2, column=7)
 ent7.insert(0, dY)
-btn1 = Button(root, width=20, bg="#ccc", text="Рисовать")
+btn1 = Button(root, width=20, bg="#ccc", text="Draw")
 btn1.grid(row=1, column=8)
 btn1.bind("<Button-1>", Draw)
-btn2 = Button(root, width=20, bg="#ccc", text="Выход")
+btn2 = Button(root, width=20, bg="#ccc", text="Exit")
 btn2.grid(row=2, column=8)
 btn2.bind("<Button-1>", Final)
 root.mainloop()
